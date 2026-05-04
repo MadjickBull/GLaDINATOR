@@ -7,6 +7,11 @@ export default {
     path: "/about",
     controller: "about-controller",
   },
+  game: {
+    path: "/game",
+    controller: "game-controller",
+  },
+
   currentPath: {
     path: "",
     controller: "",
