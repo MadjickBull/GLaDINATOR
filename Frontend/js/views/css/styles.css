@@ -1,0 +1,182 @@
+@import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #0a0a0a;
+}
+
+#app {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+#app video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+}
+header {
+  background: rgba(10, 10, 10, 0.92);
+  border-bottom: 1px solid #ff6600;
+  padding: 0 2rem;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Share Tech Mono", monospace;
+}
+
+#page-title {
+  font-family: "Orbitron", monospace;
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 3px;
+}
+
+#title-component {
+  font-size: 10px;
+  color: #ff6600;
+  letter-spacing: 2px;
+  font-weight: 400;
+}
+
+footer {
+  background: rgba(10, 10, 10, 0.92);
+  border-top: 1px solid #ff6600;
+  padding: 0.75rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Share Tech Mono", monospace;
+}
+
+footer h5 {
+  font-size: 10px;
+  color: #444;
+  letter-spacing: 2px;
+  font-weight: 400;
+}
+
+#header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+#header-right {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+#aperture-icon {
+  width: 36px;
+  height: 36px;
+}
+
+#nav-permanent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.nav-link {
+  font-size: 11px;
+  color: #888;
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+}
+.nav-link:hover {
+  color: #ff6600;
+  border-bottom-color: #ff6600;
+}
+.nav-link.active {
+  color: #ffffff;
+  border-bottom-color: #ff6600;
+}
+
+#status {
+  font-size: 10px;
+  color: #ff6600;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+#status-dot {
+  width: 6px;
+  height: 6px;
+  background: #ff6600;
+  border-radius: 50%;
+  animation: blink 2s infinite;
+}
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+
+#footer-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.footer-link {
+  font-size: 10px;
+  color: #444;
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+.footer-link:hover {
+  color: #ff6600;
+}
+.footer-divider {
+  width: 1px;
+  height: 12px;
+  background: #333;
+}
+#aperture-word {
+  color: #ff6600;
+}
+#trademark,
+#build-info {
+  font-size: 10px;
+  color: #444;
+  letter-spacing: 2px;
+}
