@@ -11,7 +11,10 @@ export default {
     path: "/game",
     controller: "game-controller",
   },
-
+  end: {
+    path: "/end",
+    controller: "end-controller",
+  },
   currentPath: {
     path: "",
     controller: "",

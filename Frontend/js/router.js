@@ -1,4 +1,5 @@
 import routes from "../js/routes.js";
+
 export default function start() {
   const path = window.location.pathname;
   navigate(path, true);
