@@ -1,0 +1,5 @@
+/**
+ * Classes relacionadas à decisão devolvida pela IA, não ao estado da sessão.
+ */
+
+package codeforall.com.online.gladinator.model.ia;

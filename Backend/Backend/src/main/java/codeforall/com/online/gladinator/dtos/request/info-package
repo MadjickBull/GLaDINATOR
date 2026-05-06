@@ -1,0 +1,38 @@
+/**
+ * DTOs de request da aplicação.
+ *
+ * Este package contém classes que representam os dados que entram no backend
+ * e são enviados pelo frontend através da REST API.
+ *
+ * Este request DTOs servem para:
+ * - iniciar uma nova sessão de jogo;
+ * - enviar respostas do utilizador;
+ * - atualizar a personalidade da IA durante a sessão.
+ *
+ * DTOs principais:
+ *
+ * StartGameRequestDto
+ * - usado no endpoint de start;
+ * - permite ao frontend indicar a personalidade inicial escolhida pelo utilizador.
+ *
+ * AnswerRequestDto
+ * - usado no endpoint de resposta;
+ * - transporta a resposta dada pelo utilizador à pergunta atual da IA.
+ *
+ * UpdatePersonalityRequestDto
+ * - usado no endpoint de atualização de personalidade;
+ * - permite alterar a personalidade da IA durante uma sessão ativa.
+ *
+ * Exemplos de JSON:
+ *
+ * StartGameRequestDto
+ * {
+ *   "personalityType": "HELPER"
+ * }
+ *
+ * AnswerRequestDto
+ * {
+ *   "answerType": "YES"
+ * }
+ */
+package codeforall.com.online.gladinator.dtos.request;
