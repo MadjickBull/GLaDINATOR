@@ -1,4 +1,5 @@
 package codeforall.com.online.gladinator.services;
 
-public class GameService {
+//lógica do jogo
+public interface GameService {
 }

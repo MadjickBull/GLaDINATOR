@@ -1,0 +1,50 @@
+/**
+ * Services da aplicação.
+ *
+ * Este package contém a lógica principal do backend e define as responsabilidades
+ * associadas à gestão de sessões, ao fluxo do jogo e à integração com a IA.
+ *
+ * Os services fazem a ponte entre:
+ * - os controllers, que recebem pedidos HTTP;
+ * - o storage, que guarda sessões em memória;
+ * - os models, que representam o estado do jogo;
+ * - a camada de IA, que gera perguntas, guesses e mensagens.
+ *
+ * Services principais:
+ *
+ * SessionService
+ * - cria sessão;
+ * - obtém sessão;
+ * - atualiza sessão;
+ * - apaga sessão;
+ * - verifica existência de sessão.
+ *
+ * GameService
+ * - define personalidade;
+ * - processa resposta do utilizador;
+ * - controla vidas;
+ * - controla perguntas;
+ * - termina o jogo.
+ *
+ * AiService
+ * - comunica com a OpenAI;
+ * - envia contexto da sessão;
+ * - obtém o próximo passo da IA;
+ * - gera perguntas, guesses e mensagens finais;
+ * - devolve decisões estruturadas ao backend.
+ *
+ * Em termos de responsabilidade:
+ *
+ * SessionService
+ * - trata da gestão técnica das sessões;
+ * - trabalha diretamente com o armazenamento em memória.
+ *
+ * GameService
+ * - trata da lógica de negócio do jogo;
+ * - decide como o estado da sessão evolui ao longo da partida.
+ *
+ * AiService
+ * - trata da integração com a inteligência artificial;
+ * - gera o conteúdo textual, mas não controla as regras do jogo.
+ */
+package codeforall.com.online.gladinator.services;

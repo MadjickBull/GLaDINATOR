@@ -1,12 +1,14 @@
 package codeforall.com.online.gladinator.storage;
 
 import codeforall.com.online.gladinator.model.session.GameSession;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-@Repository
+@Component
 //classe de estado/armazenamento em memória das sessões
 public class InMemorySessionStore {
 

@@ -1,7 +1,9 @@
 package codeforall.com.online.gladinator.model.session;
 
-//Guarda as regras fixas do jogo (pode depois passar a Constant...)
+import org.springframework.stereotype.Component;
 
+//Guarda as regras fixas do jogo
+@Component
 public class GameConfig {
 
     private int initialLives;
