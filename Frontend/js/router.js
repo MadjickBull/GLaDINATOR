@@ -1,7 +1,8 @@
 import routes from "../js/routes.js";
 
 export default function start() {
-  const path = window.location.pathname;
+  const path = window.location.pathname.replace("/Frontend/home.html", "/");
+  //const path = window.location.pathname;
   navigate(path, true);
   setAnchorEventListener();
   addEventListener("popstate", handlePopState);
