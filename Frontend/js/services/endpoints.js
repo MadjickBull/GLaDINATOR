@@ -1,60 +1,56 @@
 import {
-  GAME_ANSWER,
-  GAME_NEXT_QUESTION,
   GAME_START,
   GAME_STATE,
+  GAME_NEXT_STEP,
+  GAME_ANSWER,
+  GAME_CHANGE_PERSONALITY,
   INFO,
 } from "../config.js";
 
 // START GAME
-async function gameStart() {
+export async function gameStart(personality) {
   const resp = await fetch(GAME_START, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ personality }),
   });
+  return resp.json();
+}
 
-  const respJson = await resp.json();
-  return respJson.sessionId;
+// NEXT STEP
+export async function getNextStep(sessionId) {
+  const resp = await fetch(GAME_NEXT_STEP(sessionId));
+  return resp.json();
 }
 
 // SEND ANSWER
-async function sendAnswer(sessionId, answer) {
+export async function sendAnswer(sessionId, answer) {
   const resp = await fetch(GAME_ANSWER(sessionId), {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(answer),
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ answer }),
   });
-
-  return await resp.json();
-}
-
-// NEXT QUESTION
-async function getQuestion(sessionId) {
-  const resp = await fetch(GAME_NEXT_QUESTION(sessionId));
-  return await resp.json();
-}
-
-// GAME STATE
-async function getState(sessionId) {
-  const resp = await fetch(GAME_STATE(sessionId));
-  return await resp.json();
+  return resp.json();
 }
 
 // GET STATE
-async function getState(sessionId) {
+export async function getState(sessionId) {
   const resp = await fetch(GAME_STATE(sessionId));
-
-  return await resp.json();
+  return resp.json();
 }
 
-// GET INFO
+// CHANGE PERSONALITY
+export async function changePersonality(sessionId, personality) {
+  const resp = await fetch(GAME_CHANGE_PERSONALITY(sessionId), {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ personality }),
+  });
+  return resp.json();
+}
 
-async function getInfo() {
+// AI INFO
+export async function getInfo() {
   const resp = await fetch(INFO);
-
-  return await resp.json();
+  return resp.json();
 }
