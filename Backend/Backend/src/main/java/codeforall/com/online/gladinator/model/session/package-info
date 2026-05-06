@@ -1,0 +1,5 @@
+/**
+ * Classes relacionadas com a sessão, o estado interno do jogo.
+ */
+
+package codeforall.com.online.gladinator.model.session;

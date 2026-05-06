@@ -1,0 +1,51 @@
+/**
+ * DTOs de response da aplicação.
+ *
+ * Este package contém classes que representam os dados que saem do backend
+ * e são recebidos pelo frontend através da REST API.
+ *
+ * Os response DTOs servem para:
+ * - transportar o estado atual do jogo;
+ * - devolver o próximo passo da IA;
+ * - informar o frontend sobre o início, reinício ou fim de uma sessão.
+ *
+ * DTOs principais:
+ *
+ * GameStartRestartResponseDto
+ * - usado nas respostas dos endpoints de start e restart;
+ * - contém o estado inicial/resumido da sessão.
+ *
+ * GameStateDto
+ * - representa o estado atual completo da sessão;
+ * - inclui informação como vidas, personalidade, última pergunta,
+ *   última mensagem da IA e última guess.
+ *
+ * NextStepResponseDto
+ * - representa o próximo passo devolvido pela IA;
+ * - inclui o tipo da decisão (QUESTION, GUESS ou FINAL_MESSAGE)
+ *   e o conteúdo textual correspondente.
+ *
+ * EndGameResponseDto
+ * - representa a resposta do endpoint de fim de sessão;
+ * - informa o frontend sobre a sessão terminada e o respetivo estado final.
+ *
+ * Exemplos de JSON:
+ *
+ * GameStartRestartResponseDto
+ * {
+ *   "sessionId": "abc123",
+ *   "personalityType": "HELPER",
+ *   "remainingLives": 3,
+ *   "questionCountInRound": 0,
+ *   "gameStatus": "IN_PROGRESS"
+ * }
+ *
+ * NextStepResponseDto
+ * {
+ *   "type": "QUESTION",
+ *   "content": "Is your character human?"
+ * }
+ */
+package codeforall.com.online.gladinator.dtos.response;
+
+
