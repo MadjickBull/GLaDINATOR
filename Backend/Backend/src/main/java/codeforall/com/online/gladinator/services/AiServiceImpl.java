@@ -4,7 +4,9 @@ import codeforall.com.online.gladinator.model.enums.AiDecisionType;
 import codeforall.com.online.gladinator.model.enums.GameStatus;
 import codeforall.com.online.gladinator.model.ia.AiDecision;
 import codeforall.com.online.gladinator.model.session.GameSession;
+import org.springframework.stereotype.Service;
 
+@Service
 //gerar a próxima perguta, gerar uma guess, gerar uma mensagem final
 public class AiServiceImpl implements AiService {
 
@@ -33,18 +35,20 @@ public class AiServiceImpl implements AiService {
             if (gameSession.getQuestionCountInRound() < 4) {
                 return new AiDecision(
                         AiDecisionType.QUESTION,
-                        "Is your character human?");
+                        "Is your character human?"
+                );
             }
 
             return new AiDecision(
                     AiDecisionType.GUESS,
-                    "You are thinking of HAL 9000.");
+                    "You are thinking of HAL 9000."
+            );
         }
 
         //Estado inesperado
         return new AiDecision(
                 AiDecisionType.FINAL_MESSAGE,
-                "Session ended"
+                "Session ended."
         );
     }
 }
