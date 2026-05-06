@@ -5,6 +5,6 @@ public enum GameStatus {
     IN_PROGRESS,
     AI_WON,
     PLAYER_WON,
-    ENDED
-    
+    ENDED //A sessão foi encerrada manualmente, sem representar uma vitória normal
+
 }

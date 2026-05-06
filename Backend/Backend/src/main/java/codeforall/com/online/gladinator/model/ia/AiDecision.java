@@ -1,21 +1,23 @@
 package codeforall.com.online.gladinator.model.ia;
 
+import codeforall.com.online.gladinator.model.enums.AiDecisionType;
+
 public class AiDecision {
 
-    private codeforall.com.online.gladinator.model.ia.AiDecision aiDecisionType;
+    private AiDecisionType aiDecisionType;
     private String content;
 
 
-    public AiDecision(codeforall.com.online.gladinator.model.ia.AiDecision aiDecisionType, String content) {
+    public AiDecision(AiDecisionType aiDecisionType, String content) {
         this.aiDecisionType = aiDecisionType;
         this.content = content;
     }
 
-    public codeforall.com.online.gladinator.model.ia.AiDecision getAiDecisionType() {
+    public AiDecisionType getAiDecisionType() {
         return aiDecisionType;
     }
 
-    public void setAiDecisionType(codeforall.com.online.gladinator.model.ia.AiDecision aiDecisionType) {
+    public void setAiDecisionType(AiDecisionType aiDecisionType) {
         this.aiDecisionType = aiDecisionType;
     }
 
