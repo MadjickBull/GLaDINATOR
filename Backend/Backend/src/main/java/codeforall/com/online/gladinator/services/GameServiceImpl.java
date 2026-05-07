@@ -80,44 +80,59 @@ public class GameServiceImpl implements GameService {
 
         if (session.getQuestionCountInRound() < gameConfig.getMaxQuestionsPerRound()) {
 
+            //acrescentei pq imagna que o frontend chama:
+            //start(), updatePersonality() e processAnswer()
+            //sem antes de processAnswer(), chamar getNextStep()
+            //não vamos conseguir fazer session.getLastQuestion(), porque não há pergunta ainda
+            //então podemos estar a responder sem haver guess
+            if (session.getLastQuestion() == null) {
+                throw new IllegalStateException("There is no active question to answer.");
+            }
+
+
             // guarda a resposta no histórico
-           GameAnswer answer = new GameAnswer(
-           session.getLastQuestion(),
-           dto.getAnswerType(),
-           session.getQuestionCountInRound() + 1
-        );
+            GameAnswer answer = new GameAnswer(
+                    session.getLastQuestion(),
+                    dto.getAnswerType(),
+                    session.getQuestionCountInRound() + 1
+            );
 
-        //acrescentei esta parte - porque pode ser a primeira resposta do utilizador
-        if (session.getAnswersHistory() == null) {
-            session.setAnswersHistory(new ArrayList<>());
-        }
+            //acrescentei esta parte - porque pode ser a primeira resposta do utilizador
+            if (session.getAnswersHistory() == null) {
+                session.setAnswersHistory(new ArrayList<>());
+            }
 
-        session.getAnswersHistory().add(answer);
+            session.getAnswersHistory().add(answer);
 
-        // avança o contador
-        session.setQuestionCountInRound(session.getQuestionCountInRound() + 1);
+            // avança o contador
+            session.setQuestionCountInRound(session.getQuestionCountInRound() + 1);
 
-
+            //acrescentei porque podíamos estar a responder sem haver guess
         } else {
-            // utilizador está a responder ao GUESS da IA
-
-            if (dto.getAnswerType() == AnswerType.YES) {
-                // IA adivinhou corretamente
-                session.setGameStatus(GameStatus.AI_WON);
+            if (session.getFinalGuess() == null) {
+                throw new IllegalStateException("There is no active guess to answer.");
 
             } else {
-                // IA errou → perde uma vida
-                session.setRemainingLives(session.getRemainingLives() - 1);
+                // utilizador está a responder ao GUESS da IA
 
-                if (session.getRemainingLives() <= 0) {
-                    // sem mais vidas → jogador ganhou
-                    session.setGameStatus(GameStatus.PLAYER_WON);
+                if (dto.getAnswerType() == AnswerType.YES) {
+                    // IA adivinhou corretamente
+                    session.setGameStatus(GameStatus.AI_WON);
+
                 } else {
-                    // ainda tem vidas → começa novo round
-                    session.setQuestionCountInRound(0);
-                    //acrescentei isto:
-                    session.setFinalGuess(null);
-                    session.setLastQuestion(null);
+                    // IA errou → perde uma vida
+                    session.setRemainingLives(session.getRemainingLives() - 1);
+
+                    if (session.getRemainingLives() <= 0) {
+                        // sem mais vidas → jogador ganhou
+                        session.setGameStatus(GameStatus.PLAYER_WON);
+                    } else {
+                        // ainda tem vidas → começa novo round
+                        session.setQuestionCountInRound(0);
+                        //acrescentei isto:
+                        session.setFinalGuess(null);
+                        session.setLastQuestion(null);
+                    }
                 }
             }
         }
@@ -134,7 +149,7 @@ public class GameServiceImpl implements GameService {
     // 1. vai buscar a sessão
     GameSession session = sessionService.getSessionById(sessionId);
 
-    //2. Validação de estado e ersonalidade
+    //2. Validação de estado e personalidade
         validateSessionInProgress(session);
         validatePersonalitySelected(session);
 

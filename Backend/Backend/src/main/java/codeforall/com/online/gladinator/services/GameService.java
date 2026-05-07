@@ -6,6 +6,7 @@ import codeforall.com.online.gladinator.dtos.response.EndGameResponseDto;
 import codeforall.com.online.gladinator.dtos.response.GameStartRestartResponseDto;
 import codeforall.com.online.gladinator.dtos.response.GameStateDto;
 import codeforall.com.online.gladinator.dtos.response.NextStepResponseDto;
+import codeforall.com.online.gladinator.model.session.GameSession;
 
 //lógica do jogo
 public interface GameService {
@@ -23,4 +24,5 @@ public interface GameService {
     EndGameResponseDto endGame(String sessionId);
 
     NextStepResponseDto getNextStep(String sessionId);
+
 }

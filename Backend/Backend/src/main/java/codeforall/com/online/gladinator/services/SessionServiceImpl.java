@@ -41,7 +41,13 @@ public class SessionServiceImpl implements SessionService {
 
     @Override
     public GameSession getSessionById(String sessionId) {
-        return sessionStore.findById(sessionId);
+        GameSession gameSession = sessionStore.findById(sessionId);
+
+        if (gameSession == null) {
+            throw new IllegalStateException("Game session " + sessionId + " not found.");
+        }
+
+        return gameSession;
     }
 
     @Override

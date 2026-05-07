@@ -3,13 +3,16 @@ package codeforall.com.online.gladinator.services;
 import codeforall.com.online.gladinator.model.enums.AiDecisionType;
 import codeforall.com.online.gladinator.model.enums.GameStatus;
 import codeforall.com.online.gladinator.model.ia.AiDecision;
+import codeforall.com.online.gladinator.model.session.GameConfig;
 import codeforall.com.online.gladinator.model.session.GameSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 //gerar a próxima perguta, gerar uma guess, gerar uma mensagem final
 public class AiServiceImpl implements AiService {
 
+    private GameConfig gameConfig;
 
     //content de AiDecision com estrutura temporária - até OpenAi ligada
     @Override
@@ -32,7 +35,7 @@ public class AiServiceImpl implements AiService {
 
         if (gameSession.getGameStatus() == GameStatus.IN_PROGRESS) {
 
-            if (gameSession.getQuestionCountInRound() < 4) {
+            if (gameSession.getQuestionCountInRound() < gameConfig.getMaxQuestionsPerRound()) {
                 return new AiDecision(
                         AiDecisionType.QUESTION,
                         "Is your character human?"
@@ -50,6 +53,11 @@ public class AiServiceImpl implements AiService {
                 AiDecisionType.FINAL_MESSAGE,
                 "Session ended."
         );
+    }
+
+    @Autowired
+    public void setGameConfig(GameConfig gameConfig) {
+        this.gameConfig = gameConfig;
     }
 }
 
