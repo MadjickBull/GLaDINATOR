@@ -111,30 +111,30 @@ public class GameServiceImpl implements GameService {
         } else {
             if (session.getFinalGuess() == null) {
                 throw new IllegalStateException("There is no active guess to answer.");
+            }
+            // utilizador está a responder ao GUESS da IA
 
-            } else {
-                // utilizador está a responder ao GUESS da IA
-
-                if (dto.getAnswerType() == AnswerType.YES) {
-                    // IA adivinhou corretamente
+            if (dto.getAnswerType() == AnswerType.YES) {
+            // IA adivinhou corretamente
                     session.setGameStatus(GameStatus.AI_WON);
 
-                } else {
-                    // IA errou → perde uma vida
-                    session.setRemainingLives(session.getRemainingLives() - 1);
+            } else {
+                // IA errou → perde uma vida
+                session.setRemainingLives(session.getRemainingLives() - 1);
 
-                    if (session.getRemainingLives() <= 0) {
-                        // sem mais vidas → jogador ganhou
-                        session.setGameStatus(GameStatus.PLAYER_WON);
-                    } else {
-                        // ainda tem vidas → começa novo round
-                        session.setQuestionCountInRound(0);
-                        //acrescentei isto:
-                        session.setFinalGuess(null);
-                        session.setLastQuestion(null);
-                    }
+                if (session.getRemainingLives() <= 0) {
+                // sem mais vidas → jogador ganhou
+                session.setGameStatus(GameStatus.PLAYER_WON);
+
+                } else {
+                // ainda tem vidas → começa novo round
+                session.setQuestionCountInRound(0);
+                //acrescentei isto:
+                session.setFinalGuess(null);
+                session.setLastQuestion(null);
                 }
             }
+
         }
 
         sessionService.updateSession(session);
