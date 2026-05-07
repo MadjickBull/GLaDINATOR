@@ -2,7 +2,7 @@ package codeforall.com.online.gladinator.dtos.request;
 
 import codeforall.com.online.gladinator.model.enums.AnswerType;
 
-//Serve para enviar a resposta do utilizador.
+//Serve para enviar a resposta do utilizador (Yes or No)
 public class AnswerRequestDto {
 
     private AnswerType answerType;
