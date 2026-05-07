@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 //POST /api/game/start
 //POST /api/game/{sessionId}/restart
 @Component
-public class GameSessiontoGameStartRestartResponseDto {
+public class GameSessionToGameStartRestartResponseDto {
     public GameStartRestartResponseDto convert (GameSession gameSession) {
         return new GameStartRestartResponseDto(
                 gameSession.getSessionId(),
