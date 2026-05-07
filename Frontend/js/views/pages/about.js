@@ -1,6 +1,6 @@
 import { RESOURCE_URL } from "../../config.js";
 
-export function render() {
+export function render(devs) {
   const app = document.querySelector("#app");
   app.innerHTML = "";
 
@@ -28,7 +28,7 @@ export function render() {
 
 
 
-
+  
   const devList = document.createElement("ul");
   devList.classList.add("dev-list");
 
@@ -36,44 +36,39 @@ export function render() {
   const content = document.createElement("div");
   content.classList.add("about-content");
 
-
   
-  const devs = [
-    { name: "Filipe Costa", github: "https://github.com/MadjickBull" , role: "Frontend Developer", initials: "FC"},
-    { name: "Nuno Ferreira", github: "https://github.com/Nokz22" , role: "Frontend Developer", initials: "NF"},
-    { name: "Francisco Sucena", github: "https://github.com/franciscosucena03", role: "Backend Developer", initials: "FS"},
-    { name: "Tânia Gonçalves", github: "https://github.com/tsmartinsgoncalves", role: "Backend Developer", initials: "TG"},
-  ];
+
 
   devs.forEach((dev) => {
-  const card = document.createElement("div");
-  const avatar = document.createElement("div");
-  const name = document.createElement("h3");
-  const role = document.createElement("p");
-  const githubLink = document.createElement("a");
-  const githubLogo = document.createElement("img");
 
-  githubLogo.src = RESOURCE_URL + "GithubLogo.png";
-  githubLogo.alt = "GitHub Logo";
+    const card = document.createElement("div");
+    const avatar = document.createElement("div");
+    const name = document.createElement("h3");
+    const role = document.createElement("p");
+    const githubLink = document.createElement("a");
+    const githubLogo = document.createElement("img");
 
-  
-  name.textContent = dev.name;
-  role.textContent = dev.role;
-  avatar.textContent = dev.initials;
+    githubLogo.src = RESOURCE_URL + "GithubLogo.png";
+    githubLogo.alt = "GitHub Logo";
+
+    
+    name.textContent = dev.name;
+    role.textContent = dev.role;
+    avatar.textContent = dev.initials;
 
 
-  githubLink.classList.add("dev-github");
-  githubLink.href = dev.github;
-  card.classList.add("dev-card");
-  avatar.classList.add("dev-avatar");
-  
+    githubLink.classList.add("dev-github");
+    githubLink.href = dev.github;
+    card.classList.add("dev-card");
+    avatar.classList.add("dev-avatar");
+    
 
-  card.appendChild(avatar);
-  card.appendChild(name);
-  card.appendChild(role);
-  githubLink.appendChild(githubLogo);
-  card.appendChild(githubLink);
-  devList.appendChild(card);
+    card.appendChild(avatar);
+    card.appendChild(name);
+    card.appendChild(role);
+    githubLink.appendChild(githubLogo);
+    card.appendChild(githubLink);
+    devList.appendChild(card);
 });
 
   
