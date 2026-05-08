@@ -1,10 +1,10 @@
-import { createElement } from "react";
+//import { createElement } from "react";
 import { RESOURCE_URL } from "../../config.js";
 import { startButton } from "../components/startButton.js";
 
 export function render() {
   const app = document.querySelector("#app");
-  app.inn;
+ // app.inn;
 
   const homeWallpaper = document.createElement("video");
   homeWallpaper.src = RESOURCE_URL + "LandingPage.mp4";

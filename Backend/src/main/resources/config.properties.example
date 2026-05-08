@@ -1,0 +1,6 @@
+
+# AI Configuration
+ai.api_key=XXXXXXXXXXXXXXXXXXXX
+ai.chat.model=gpt-4o
+ai.embedding.model=text-embedding-3-small
+ai.temperature=0.4

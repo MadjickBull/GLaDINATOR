@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="openAiApi" class="com.codeforall.online.gladinator.config.aiConfig.OpenAiApiFactory">
+        <property name="apiKey" value="${ai.api_key}"/>
+    </bean>
+
+    <bean id="openAiChatOptions" class="com.codeforall.online.gladinator.config.aiConfig.OpenAiChatOptionsFactory">
+        <property name="model" value="${ai.chat.model}"/>
+        <property name="temperature" value="${ai.temperature}"/>
+    </bean>
+
+    <bean id="chatModel" class="com.codeforall.online.gladinator.config.aiConfig.OpenAiChatModelFactory">
+        <property name="openAiApi" ref="openAiApi"/>
+        <property name="openAiChatOptions" ref="openAiChatOptions"/>
+    </bean>
+
+    <bean id="chatClient" class="org.springframework.ai.chat.client.ChatClient" factory-method="create">
+        <constructor-arg ref="chatModel"/>
+    </bean>
+
+</beans>

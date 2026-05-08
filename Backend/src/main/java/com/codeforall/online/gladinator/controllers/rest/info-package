@@ -1,0 +1,42 @@
+/**
+ * REST controllers da aplicação.
+ *
+ * Este package contém os controllers responsáveis por expor a API REST do backend.
+ *
+ * - o frontend envia pedidos à API;
+ * - os controllers recebem esses pedidos;
+ * - os services tratam da lógica;
+ * - o backend devolve respostas estruturadas.
+ *
+ * Controller principal:
+ *
+ * RestGameController
+ * - expõe os endpoints principais do jogo;
+ * - permite criar sessão, obter o estado atual, definir personalidade,
+ *   processar respostas, reiniciar a sessão, terminá-la e pedir o próximo
+ *   passo da IA.
+ *
+ * Endpoints principais:
+ *
+ * POST /api/game/start
+ * - cria uma nova sessão de jogo.
+ *
+ * GET /api/game/{sessionId}/state
+ * - devolve o estado atual da sessão.
+ *
+ * PATCH /api/game/{sessionId}/personality
+ * - define ou altera a personalidade da IA na sessão.
+ *
+ * POST /api/game/{sessionId}/answer
+ * - processa a resposta do utilizador.
+ *
+ * POST /api/game/{sessionId}/restart
+ * - reinicia a sessão mantendo o mesmo sessionId.
+ *
+ * POST /api/game/{sessionId}/end
+ * - termina manualmente a sessão.
+ *
+ * GET /api/game/{sessionId}/next-step
+ * - devolve o próximo passo da IA: pergunta, guess ou mensagem final.
+ *
+package com.codeforall.online.gladinator.controllers.rest;

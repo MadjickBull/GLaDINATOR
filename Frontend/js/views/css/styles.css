@@ -22,20 +22,7 @@ html {
   z-index: 0;
 }
 
-#app video {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
 
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 2;
-}
 
 footer {
   position: fixed;
@@ -44,7 +31,14 @@ footer {
   width: 100%;
   z-index: 2;
 }
+
+
 header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
   background: rgba(10, 10, 10, 0.92);
   border-bottom: 1px solid #ff6600;
   padding: 0 2rem;
@@ -179,4 +173,157 @@ footer h5 {
   font-size: 10px;
   color: #444;
   letter-spacing: 2px;
+}
+
+
+/* --- Toggle Switch Styles --- */
+
+/* Container for toggle */
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 45px;
+  height: 20px;
+  cursor: pointer;
+}
+
+/* Checkbox hidden to save state */
+.toggle input {
+  display: none;
+}
+
+/* Container where circle slides */
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #222222;
+  border-radius: 20px;
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+}
+
+/* The circle */
+.slider::before {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  left: 2px;
+  top: 2px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+
+/* ON color*/
+.toggle input:checked + .slider {
+  background-color: #ff6600;
+}
+/* ON slider*/
+.toggle input:checked + .slider::before {
+  transform: translateX(25px);
+}
+
+
+/* --- About Page --- */
+.about-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 80px 2rem 80px;
+  gap: 2rem;
+}
+
+
+
+/* --- Dev Cards --- */
+.dev-list {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  list-style: none;
+  padding: 0;
+}
+
+.dev-card {
+  background: rgba(255, 102, 0, 0.1);
+  border: 1px solid #ff6600;
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(0.5rem, 2vw, 1rem);
+  text-align: center;
+}
+
+.dev-avatar {
+  background-color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 24px;
+  color: #ff6600;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2px solid #ff6600;
+}
+
+.dev-card h3 {
+  font-family: "Orbitron", monospace;
+  font-size: 16px;
+  color: #ffffff;
+}
+
+
+.dev-card p {
+  font-size: 12px;
+  color: #ff6600;
+  margin-top: -4px;
+}
+
+
+.dev-github {
+  font-size: 10px;
+  color: #ff6600;
+  text-decoration: none;
+  border: 1px solid #ff6600;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+
+.dev-github img {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+}
+
+
+.dev-github:hover {
+  background-color: #ff6600;
+  color: #0a0a0a;
+}
+
+/* --- Paragraph --- */
+
+.about-paragraph {
+  font-family: "Share Tech Mono", monospace;
+  max-width: 600px;
+  font-size: 14px;
+  color: #ff6600;
+  line-height: 1.5;
+  text-align: center;
 }

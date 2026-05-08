@@ -1,0 +1,24 @@
+package com.codeforall.online.gladinator.dtos.request;
+
+import com.codeforall.online.gladinator.model.enums.AnswerType;
+
+//Serve para enviar a resposta do utilizador (Yes or No)
+public class AnswerRequestDto {
+
+    private AnswerType answerType;
+
+    public AnswerRequestDto() {
+    }
+
+    public AnswerRequestDto(AnswerType answerType) {
+        this.answerType = answerType;
+    }
+
+    public AnswerType getAnswerType() {
+        return answerType;
+    }
+
+    public void setAnswerType(AnswerType answerType) {
+        this.answerType = answerType;
+    }
+}
