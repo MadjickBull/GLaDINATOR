@@ -10,58 +10,59 @@ import com.codeforall.online.gladinator.services.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/game")
 public class RestGameController {
 
-    private GameService gameService;
+  private GameService gameService;
 
-    // Cria uma nova sessão de jogo
-    @PostMapping("/start")
-    public GameStartRestartResponseDto startGame() {
-        return gameService.startGame();
-    }
+  // Cria uma nova sessão de jogo
+  @PostMapping("/start")
+  public GameStartRestartResponseDto startGame() {
+    return gameService.startGame();
+  }
 
-    // Devolve o estado atual da sessão
-    @GetMapping("/{sessionId}/state")
-    public GameStateDto getGameState(@PathVariable String sessionId) {
-        return gameService.getGameState(sessionId);
-    }
+  // Devolve o estado atual da sessão
+  @GetMapping("/{sessionId}/state")
+  public GameStateDto getGameState(@PathVariable String sessionId) {
+    return gameService.getGameState(sessionId);
+  }
 
-    // Define ou altera a personalidade da IA
-    @PatchMapping("/{sessionId}/personality")
-    public GameStateDto updatePersonality(@PathVariable String sessionId,
-                                          @RequestBody UpdatePersonalityRequestDto requestDto) {
-        return gameService.updatePersonality(sessionId, requestDto);
-    }
+  // Define ou altera a personalidade da IA
+  @PostMapping("/{sessionId}/personality")
+  public GameStateDto updatePersonality(@PathVariable String sessionId,
+      @RequestBody UpdatePersonalityRequestDto requestDto) {
+    return gameService.updatePersonality(sessionId, requestDto);
+  }
 
-    // Processa a resposta do utilizador
-    @PostMapping("/{sessionId}/answer")
-    public GameStateDto processAnswer(@PathVariable String sessionId,
-                                      @RequestBody AnswerRequestDto requestDto) {
-        return gameService.processAnswer(sessionId, requestDto);
-    }
+  // Processa a resposta do utilizador
+  @PostMapping("/{sessionId}/answer")
+  public GameStateDto processAnswer(@PathVariable String sessionId,
+      @RequestBody AnswerRequestDto requestDto) {
+    return gameService.processAnswer(sessionId, requestDto);
+  }
 
-    // Reinicia a sessão mantendo o mesmo sessionId
-    @PostMapping("/{sessionId}/restart")
-    public GameStartRestartResponseDto restartGame(@PathVariable String sessionId) {
-        return gameService.restartGame(sessionId);
-    }
+  // Reinicia a sessão mantendo o mesmo sessionId
+  @PostMapping("/{sessionId}/restart")
+  public GameStartRestartResponseDto restartGame(@PathVariable String sessionId) {
+    return gameService.restartGame(sessionId);
+  }
 
-    // Termina manualmente a sessão
-    @PostMapping("/{sessionId}/end")
-    public EndGameResponseDto endGame(@PathVariable String sessionId) {
-        return gameService.endGame(sessionId);
-    }
+  // Termina manualmente a sessão
+  @PostMapping("/{sessionId}/end")
+  public EndGameResponseDto endGame(@PathVariable String sessionId) {
+    return gameService.endGame(sessionId);
+  }
 
-    //Pede o próximo passo da IA: pergunta, guess ou mensagem final
-    @GetMapping("/{sessionId}/next-step")
-    public NextStepResponseDto getNextStep(@PathVariable String sessionId) {
-        return gameService.getNextStep(sessionId);
-    }
+  // Pede o próximo passo da IA: pergunta, guess ou mensagem final
+  @GetMapping("/{sessionId}/next-step")
+  public NextStepResponseDto getNextStep(@PathVariable String sessionId) {
+    return gameService.getNextStep(sessionId);
+  }
 
-    @Autowired
-    public void setGameService(GameService gameService) {
-        this.gameService = gameService;
-    }
+  @Autowired
+  public void setGameService(GameService gameService) {
+    this.gameService = gameService;
+  }
 }

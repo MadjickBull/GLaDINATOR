@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>GLaDOS Test Panel</title>
+    <style>
+      body {
+        font-family: monospace;
+        padding: 2rem;
+        background: #111;
+        color: #eee;
+      }
+      h2 {
+        margin-bottom: 1.5rem;
+      }
+      .row {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin-bottom: 1.5rem;
+      }
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      label {
+        font-size: 12px;
+        color: #888;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      input,
+      select {
+        background: #1a1a1a;
+        border: 1px solid #444;
+        color: #eee;
+        padding: 6px 10px;
+        border-radius: 6px;
+        font-family: monospace;
+        font-size: 13px;
+        width: 240px;
+      }
+      .btn-row {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 1.5rem;
+      }
+      button {
+        padding: 8px 16px;
+        background: transparent;
+        color: #eee;
+        border: 1px solid #555;
+        border-radius: 6px;
+        cursor: pointer;
+        font-family: monospace;
+        font-size: 13px;
+      }
+      button:hover {
+        background: #222;
+        border-color: #aaa;
+      }
+      button#btn-clear {
+        border-color: #333;
+        color: #666;
+      }
+      button#btn-clear:hover {
+        color: #aaa;
+        border-color: #666;
+      }
+      #chatbox {
+        height: 320px;
+        overflow-y: auto;
+        border: 1px solid #2a2a2a;
+        border-radius: 6px;
+        padding: 12px;
+        background: #0d0d0d;
+        white-space: pre-wrap;
+        font-size: 13px;
+        line-height: 1.7;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>GLaDOS — Test Panel</h2>
+
+    <div class="row">
+      <div class="field">
+        <label>Session ID</label>
+        <input id="input-session-id" placeholder="auto-filled on game start" />
+      </div>
+      <div class="field">
+        <label>Personality</label>
+        <select id="input-personality">
+          <option value="DEFAULT">DEFAULT</option>
+          <option value="GLADOS">GLADOS</option>
+          <option value="FRIENDLY">FRIENDLY</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Answer</label>
+        <input id="input-answer" placeholder="type an answer..." />
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button id="btn-game-start">Game start</button>
+      <button id="btn-next-step">Next step</button>
+      <button id="btn-get-state">Get state</button>
+      <button id="btn-send-answer">Send answer</button>
+      <button id="btn-change-personality">Change personality</button>
+      <button id="btn-restart">Restart</button>
+      <button id="btn-end">End game</button>
+      <button id="btn-ai-info">AI info</button>
+      <button id="btn-speak">Speak</button>
+      <button id="btn-clear">Clear</button>
+    </div>
+
+    <div id="chatbox"></div>
+
+    <script type="module" src="./js/api-testing.js"></script>
+  </body>
+</html>
