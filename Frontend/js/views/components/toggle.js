@@ -1,23 +1,20 @@
-function toggleButton() {
+ export function toggleButton() {
+  const container = document.createElement("div");
+  container.classList.add("personality-switcher")
+    const btnLover = document.createElement("button");
+    btnLover.textContent = "💕";
+    btnLover.dataset.value = "0"
+    container.appendChild(btnLover);
 
-  const toggle = document.createElement("label");
-  const input = document.createElement("input");
-  const span = document.createElement("span")
+    const btnDefault = document.createElement("button");
+    btnDefault.textContent = "🤖";
+    btnDefault.dataset.value = "1"
+    container.appendChild(btnDefault);
 
+    const btnSarcastic = document.createElement("button");
+    btnSarcastic.textContent = "🔪";
+    btnSarcastic.dataset.value = "2"
+    container.appendChild(btnSarcastic);
 
-  toggle.id = "toggle-button";
-  input.type = "checkbox";
-  input.id = "personality-toggle";
-  span.classList.add("slider");
-
-
-  toggle.classList.add("toggle", "btn-toggle");
-
-
-    toggle.appendChild(input);
-    toggle.appendChild(span);
-
-  return toggle;
+  return container;
 }
-
-export { toggleButton };
