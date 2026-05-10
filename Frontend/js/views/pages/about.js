@@ -9,13 +9,7 @@ export function render(devs) {
   aboutWallpaper.loop = true;
   aboutWallpaper.autoplay = true;
   aboutWallpaper.muted = true;
-  aboutWallpaper.style.position = "absolute";
-  aboutWallpaper.style.top = "0";
-  aboutWallpaper.style.left = "0";
-  aboutWallpaper.style.width = "100%";
-  aboutWallpaper.style.height = "100%";
-  aboutWallpaper.style.zIndex = "-1";
-  aboutWallpaper.style.objectFit = "cover";
+  aboutWallpaper.classList.add("wallpaper-video")
 
 
 
