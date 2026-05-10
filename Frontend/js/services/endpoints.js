@@ -7,6 +7,7 @@ import {
   GAME_CHANGE_PERSONALITY,
   INFO,
   GLADOS_TTS_API,
+  GAME_END,
 } from "../config.js";
 
 // START GAME   / personalityType  and "DEFAULT" on all caps
@@ -14,7 +15,7 @@ export async function gameStart(personality) {
   const resp = await fetch(GAME_START, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ personality }),
+    body: JSON.stringify(personality),
   });
   return resp.json();
 }
@@ -57,7 +58,7 @@ export async function getState(sessionId) {
 // CHANGE PERSONALITY // personalityType  "DEFAULT" value all caps aswell
 export async function changePersonality(sessionId, personality) {
   const resp = await fetch(GAME_CHANGE_PERSONALITY(sessionId), {
-    method: "POST",
+    method: "PATCH",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ personalityType: personality }),
   });
@@ -75,5 +76,7 @@ export async function speak(lastAiMessage) {
   const rawAudio = await fetch(
     GLADOS_TTS_API + encodeURIComponent(lastAiMessage),
   );
-  return rawAudio.blob();
+  const blob = await rawAudio.blob();
+  const url = URL.createObjectURL(blob);
+  new Audio(url).play();
 }
