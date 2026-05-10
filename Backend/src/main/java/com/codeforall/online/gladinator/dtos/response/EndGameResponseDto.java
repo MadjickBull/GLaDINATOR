@@ -2,13 +2,16 @@ package com.codeforall.online.gladinator.dtos.response;
 
 import com.codeforall.online.gladinator.model.enums.GameStatus;
 
-//para quando a sessão é terminada manualmente.
+/**
+ * Response DTO returned when a game session is ended manually.
+ */
 public class EndGameResponseDto {
 
     private String sessionId;
     private GameStatus gameStatus;
 
-    public EndGameResponseDto() {}
+    public EndGameResponseDto() {
+    }
 
     public EndGameResponseDto(String sessionId, GameStatus gameStatus) {
         this.sessionId = sessionId;
@@ -30,5 +33,4 @@ public class EndGameResponseDto {
     public void setGameStatus(GameStatus gameStatus) {
         this.gameStatus = gameStatus;
     }
-
 }

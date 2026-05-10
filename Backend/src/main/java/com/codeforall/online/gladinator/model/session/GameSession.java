@@ -2,40 +2,29 @@ package com.codeforall.online.gladinator.model.session;
 
 import com.codeforall.online.gladinator.model.enums.GameStatus;
 import com.codeforall.online.gladinator.model.enums.PersonalityType;
+
 import java.util.List;
 
+/**
+ * Represents the complete mutable state of a game session.
+ */
 public class GameSession {
 
-    //String -> p/podermos usar um identificador único em vez de termos um contador manual - UUID
+    // Unique identifier of the session.
     private String sessionId;
-    //pode mudar a qualquer momento
+    // Current AI personality selected for this session.
     private PersonalityType personalityType;
     private int remainingLives;
-    //até 4 perguntas -> depois guess
+    // Number of questions already asked in the current round.
     private int questionCountInRound;
     private GameStatus gameStatus;
     private String lastQuestion;
     private String lastAiMessage;
     private String finalGuess;
-
-    //importante para
-        // o backend manter histórico
-        //a OpenAI receber contexto
+    // Session question-and-answer history used by the backend and AI as context.
     private List<GameAnswer> answersHistory;
 
-
-    public GameSession() {}
-
-    public GameSession(String sessionId, PersonalityType personalityType, int remainingLives, int questionCountInRound, GameStatus gameStatus, String lastQuestion, String lastAiMessage, String finalGuess, List<GameAnswer> answersHistory) {
-        this.sessionId = sessionId;
-        this.personalityType = personalityType;
-        this.remainingLives = remainingLives;
-        this.questionCountInRound = questionCountInRound;
-        this.gameStatus = gameStatus;
-        this.lastQuestion = lastQuestion;
-        this.lastAiMessage = lastAiMessage;
-        this.finalGuess = finalGuess;
-        this.answersHistory = answersHistory;
+    public GameSession() {
     }
 
     public String getSessionId() {

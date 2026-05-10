@@ -1,5 +1,6 @@
 package com.codeforall.online.gladinator.services;
 
+import com.codeforall.online.gladinator.exceptions.AiIntegrationException;
 import com.codeforall.online.gladinator.model.enums.AiDecisionType;
 import com.codeforall.online.gladinator.model.enums.GameStatus;
 import com.codeforall.online.gladinator.model.ia.AiDecision;
@@ -19,68 +20,86 @@ import java.util.Map;
 @Service
 public class AiServiceImpl implements AiService {
 
-  private GameConfig gameConfig;
-  private ChatClient chatClient;
+    private GameConfig gameConfig;
+    private ChatClient chatClient;
 
-  @Value("classpath:ai/prompts/game-prompt.st")
-  private Resource gamePromptTemplate;
+    @Value("classpath:ai/prompts/game-prompt.st")
+    private Resource gamePromptTemplate;
 
-  @Override
-  public AiDecision getNextStep(GameSession gameSession) {
-    if (gameSession.getGameStatus() == GameStatus.PLAYER_WON) {
-      return new AiDecision(AiDecisionType.FINAL_MESSAGE, "You win. I was clearly sabotaged.");
-    }
-    if (gameSession.getGameStatus() == GameStatus.AI_WON) {
-      return new AiDecision(AiDecisionType.FINAL_MESSAGE, "I knew it all along. Too easy.");
-    }
-    String prompt = buildPrompt(gameSession);
-    String content = chatClient.prompt()
-        .user(prompt)
-        .call()
-        .content();
-    String lower = content.toLowerCase();
-    if (lower.startsWith("my guess is:") || lower.contains("\nmy guess is:")) {
-      return new AiDecision(AiDecisionType.GUESS, content);
-    }
-    return new AiDecision(AiDecisionType.QUESTION, content);
-  }
+    /**
+     * Generates the next structured AI decision based on the current session state.
+     *
+     * @param gameSession the current game session
+     * @return the next AI decision for the session
+     * @throws AiIntegrationException if the OpenAI call fails
+     */
+    @Override
+    public AiDecision getNextStep(GameSession gameSession) {
+        if (gameSession.getGameStatus() == GameStatus.PLAYER_WON) {
+            return new AiDecision(AiDecisionType.FINAL_MESSAGE, "You win. I was clearly sabotaged.");
+        }
 
-  private String buildPrompt(GameSession gameSession) {
-    PromptTemplate promptTemplate = new PromptTemplate(gamePromptTemplate);
-    return promptTemplate.create(Map.of(
-        "personalityDescription", gameSession.getPersonalityType().getDescription(),
-        "gameStatus", gameSession.getGameStatus().name(),
-        "remainingLives", gameSession.getRemainingLives(),
-        "questionCount", gameSession.getQuestionCountInRound(),
-        "maxQuestions", gameConfig.getMaxQuestionsPerRound(),
-        "history", buildHistory(gameSession))).getContents();
-  }
+        if (gameSession.getGameStatus() == GameStatus.AI_WON) {
+            return new AiDecision(AiDecisionType.FINAL_MESSAGE, "I knew it all along. Too easy.");
+        }
 
-  private String buildHistory(GameSession gameSession) {
-    List<GameAnswer> history = gameSession.getAnswersHistory();
+        String prompt = buildPrompt(gameSession);
+        String content;
 
-    if (history == null || history.isEmpty()) {
-      return "No previous questions or answers.";
-    }
+        try {
+            content = chatClient.prompt()
+                    .user(prompt)
+                    .call()
+                    .content();
+        } catch (Exception e) {
+            throw new AiIntegrationException("Failed to get a response from OpenAI.", e);
+        }
 
-    StringBuilder promptedMemory = new StringBuilder();
-    for (GameAnswer answer : history) {
-      promptedMemory.append("Question ").append(answer.getQuestionOrder())
-          .append(": ").append(answer.getQuestion())
-          .append(" | Answer: ").append(answer.getAnswerType().name())
-          .append("\n");
+        // The backend decides the round phase so the game rule does not depend
+        // on the model writing a specific guess prefix.
+        if (gameSession.getQuestionCountInRound() < gameConfig.getMaxQuestionsPerRound()) {
+            return new AiDecision(AiDecisionType.QUESTION, content);
+        }
+
+        return new AiDecision(AiDecisionType.GUESS, content);
     }
 
-    return promptedMemory.toString();
-  }
+    private String buildPrompt(GameSession gameSession) {
+        PromptTemplate promptTemplate = new PromptTemplate(gamePromptTemplate);
+        return promptTemplate.create(Map.of(
+                "personalityDescription", gameSession.getPersonalityType().getDescription(),
+                "gameStatus", gameSession.getGameStatus().name(),
+                "remainingLives", gameSession.getRemainingLives(),
+                "questionCount", gameSession.getQuestionCountInRound(),
+                "maxQuestions", gameConfig.getMaxQuestionsPerRound(),
+                "history", buildHistory(gameSession))).getContents();
+    }
 
-  @Autowired
-  public void setGameConfig(GameConfig gameConfig) {
-    this.gameConfig = gameConfig;
-  }
+    private String buildHistory(GameSession gameSession) {
+        List<GameAnswer> history = gameSession.getAnswersHistory();
 
-  @Autowired
-  public void setChatClient(ChatClient chatClient) {
-    this.chatClient = chatClient;
-  }
+        if (history == null || history.isEmpty()) {
+            return "No previous questions or answers.";
+        }
+
+        StringBuilder promptedMemory = new StringBuilder();
+        for (GameAnswer answer : history) {
+            promptedMemory.append("Question ").append(answer.getQuestionOrder())
+                    .append(": ").append(answer.getQuestion())
+                    .append(" | Answer: ").append(answer.getAnswerType().name())
+                    .append("\n");
+        }
+
+        return promptedMemory.toString();
+    }
+
+    @Autowired
+    public void setGameConfig(GameConfig gameConfig) {
+        this.gameConfig = gameConfig;
+    }
+
+    @Autowired
+    public void setChatClient(ChatClient chatClient) {
+        this.chatClient = chatClient;
+    }
 }

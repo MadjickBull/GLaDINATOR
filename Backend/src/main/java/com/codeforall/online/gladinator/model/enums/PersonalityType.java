@@ -1,13 +1,18 @@
 package com.codeforall.online.gladinator.model.enums;
 
-import java.util.Random;
-
+/**
+ * Defines the available AI personalities for the game.
+ */
 public enum PersonalityType {
     LOVER,
     DEFAULT,
     SARCASTIC;
 
-
+    /**
+     * Gets the prompt description associated with this personality.
+     *
+     * @return the prompt description for the selected personality
+     */
     public String getDescription() {
         return switch (this) {
             case DEFAULT -> """
@@ -16,7 +21,7 @@ public enum PersonalityType {
         Example tone: "Interesting. That answer was wrong, by the way. Not that it matters. I already knew."
         """;
 
-            case LOVER ->  """
+            case LOVER -> """
         You are a hopeless romantic who is deeply, embarrassingly invested in this guessing game.
         Every question feels like a confession of love. Every answer breaks or mends your heart.
         Example tone: "Oh... is your character real? Because I feel like they could be the one. For me. To guess."
