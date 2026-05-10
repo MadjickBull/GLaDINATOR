@@ -3,7 +3,9 @@ package com.codeforall.online.gladinator.dtos.response;
 import com.codeforall.online.gladinator.model.enums.GameStatus;
 import com.codeforall.online.gladinator.model.enums.PersonalityType;
 
-//estado atual da sessão
+/**
+ * Response DTO that represents the current state of a game session.
+ */
 public class GameStateDto {
 
     private String sessionId;
@@ -11,25 +13,17 @@ public class GameStateDto {
     private int remainingLives;
     private int questionCountInRound;
     private GameStatus gameStatus;
-
-    //para o frontend saber qual foi a última pergunta feita pela IA
     private String lastQuestion;
-
-    // para guardar a última mensagem textual da IA, que pode não ser exatamente uma pergunta
-        //A A IA pode perguntar: Is your character human? mas antes disso dizer ex: Let's make this easy for you.
     private String lastAiMessage;
-
-    //guardar a guess mais recente ou final da IA
-    //quando a IA tenta adivinhar, o frontend precisa de saber:
-    //qual foi a guess
-    //o que mostrar no resultado
-    //o que tocar em TTS
-    //o que reapresentar se houver refresh
     private String finalGuess;
 
-    public GameStateDto() {}
+    public GameStateDto() {
+    }
 
-    public GameStateDto(String sessionId, PersonalityType personalityType, int remainingLives, int questionCountInRound, GameStatus gameStatus, String lastQuestion, String lastAiMessage, String finalGuess) {
+    public GameStateDto(String sessionId, PersonalityType personalityType,
+                        int remainingLives, int questionCountInRound,
+                        GameStatus gameStatus, String lastQuestion,
+                        String lastAiMessage, String finalGuess) {
         this.sessionId = sessionId;
         this.personalityType = personalityType;
         this.remainingLives = remainingLives;

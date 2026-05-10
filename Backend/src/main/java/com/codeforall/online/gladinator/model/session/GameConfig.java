@@ -1,37 +1,39 @@
 package com.codeforall.online.gladinator.model.session;
 
-import org.springframework.stereotype.Component;
-
-//Guarda as regras fixas do jogo
-@Component
+/**
+ * Represents the fixed game rules used across the application.
+ */
 public class GameConfig {
 
-    private int initialLives;
-    private int maxQuestionsPerRound;
+    private final int initialLives;
+    private final int maxQuestionsPerRound;
 
-    public GameConfig() {
-        this.initialLives = 3;
-        this.maxQuestionsPerRound = 4;
-    }
-
+    /**
+     * Creates a new game configuration.
+     *
+     * @param initialLives the number of initial lives assigned to the AI
+     * @param maxQuestionsPerRound the maximum number of questions allowed per round
+     */
     public GameConfig(int initialLives, int maxQuestionsPerRound) {
         this.initialLives = initialLives;
         this.maxQuestionsPerRound = maxQuestionsPerRound;
     }
 
+    /**
+     * Gets the initial number of AI lives.
+     *
+     * @return the initial lives value
+     */
     public int getInitialLives() {
         return initialLives;
     }
 
-    public void setInitialLives(int initialLives) {
-        this.initialLives = initialLives;
-    }
-
+    /**
+     * Gets the maximum number of questions allowed per round.
+     *
+     * @return the maximum number of questions per round
+     */
     public int getMaxQuestionsPerRound() {
         return maxQuestionsPerRound;
     }
-     public void setMaxQuestionsPerRound(int maxQuestionsPerRound) {
-        this.maxQuestionsPerRound = maxQuestionsPerRound;
-     }
-
 }

@@ -4,12 +4,19 @@ import com.codeforall.online.gladinator.dtos.response.GameStartRestartResponseDt
 import com.codeforall.online.gladinator.model.session.GameSession;
 import org.springframework.stereotype.Component;
 
-//Transforma a sessão num DTO mais resumido, usado para as respostas de:
-//POST /api/game/start
-//POST /api/game/{sessionId}/restart
+/**
+ * Converts a game session into the DTO returned by the start and restart endpoints.
+ */
 @Component
 public class GameSessionToGameStartRestartResponseDto {
-    public GameStartRestartResponseDto convert (GameSession gameSession) {
+
+    /**
+     * Converts a {@link GameSession} into a {@link GameStartRestartResponseDto}.
+     *
+     * @param gameSession the current game session
+     * @return the DTO returned to the frontend
+     */
+    public GameStartRestartResponseDto convert(GameSession gameSession) {
         return new GameStartRestartResponseDto(
                 gameSession.getSessionId(),
                 gameSession.getPersonalityType(),
@@ -19,5 +26,4 @@ public class GameSessionToGameStartRestartResponseDto {
                 gameSession.getLastAiMessage()
         );
     }
-
 }

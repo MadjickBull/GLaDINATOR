@@ -2,7 +2,9 @@ package com.codeforall.online.gladinator.dtos.response;
 
 import com.codeforall.online.gladinator.model.enums.AiDecisionType;
 
-//Resposta do endpoint next-step - decisção da IA - pergunta, guess ou mensagem final
+/**
+ * Response DTO that represents the next decision returned by the AI.
+ */
 public class NextStepResponseDto {
 
     private AiDecisionType type;

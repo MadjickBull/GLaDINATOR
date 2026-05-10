@@ -1,16 +1,20 @@
 package com.codeforall.online.gladinator.dtos.request;
 
 import com.codeforall.online.gladinator.model.enums.PersonalityType;
+import jakarta.validation.constraints.NotNull;
 
-//Serve para mudar a personalidade durante a sessão
-public class UpdatePersonalityRequestDto {
+/**
+ * Request DTO used to choose or update the AI personality.
+ */
+public class ChoosePersonalityRequestDto {
 
+    @NotNull
     private PersonalityType personalityType;
 
-    public UpdatePersonalityRequestDto() {
+    public ChoosePersonalityRequestDto() {
     }
 
-    public UpdatePersonalityRequestDto(PersonalityType personalityType) {
+    public ChoosePersonalityRequestDto(PersonalityType personalityType) {
         this.personalityType = personalityType;
     }
 
@@ -21,5 +25,4 @@ public class UpdatePersonalityRequestDto {
     public void setPersonalityType(PersonalityType personalityType) {
         this.personalityType = personalityType;
     }
-
 }

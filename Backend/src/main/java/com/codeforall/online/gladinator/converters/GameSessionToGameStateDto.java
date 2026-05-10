@@ -4,12 +4,19 @@ import com.codeforall.online.gladinator.dtos.response.GameStateDto;
 import com.codeforall.online.gladinator.model.session.GameSession;
 import org.springframework.stereotype.Component;
 
-//Pega no estado interno completo da sessão e transforma-o no DTO usado no endpoint:
-//GET /api/game/{sessionId}/state
+/**
+ * Converts a game session into the DTO that represents the current game state.
+ */
 @Component
 public class GameSessionToGameStateDto {
 
-    public GameStateDto convert (GameSession gameSession) {
+    /**
+     * Converts a {@link GameSession} into a {@link GameStateDto}.
+     *
+     * @param gameSession the current game session
+     * @return the DTO returned to the frontend
+     */
+    public GameStateDto convert(GameSession gameSession) {
         return new GameStateDto(
                 gameSession.getSessionId(),
                 gameSession.getPersonalityType(),
@@ -22,4 +29,3 @@ public class GameSessionToGameStateDto {
         );
     }
 }
-
