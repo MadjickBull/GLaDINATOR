@@ -41,7 +41,7 @@ public class RestGameController {
     public GameStateDto getGameState(@PathVariable String sessionId) {
         return gameService.getGameState(sessionId);
     }
-
+  
     /**
      * Chooses or updates the AI personality for an existing session.
      *
@@ -55,6 +55,7 @@ public class RestGameController {
                                           @Valid @RequestBody ChoosePersonalityRequestDto requestDto) {
         return gameService.choosePersonality(sessionId, requestDto);
     }
+
 
     /**
      * Processes the user's answer for the current AI question or guess.
