@@ -1,7 +1,7 @@
 import { RESOURCE_URL } from "../../config.js";
 import { gameStart, restartGame } from "../../services/endpoints.js";
 import { startButton } from "../components/startButton.js";
-import { game } from "../../services/gameSession.js";
+import { game, initGame } from "../../services/gameSession.js";
 import { navigate } from "../../router.js";
 
 export function render() {
@@ -25,6 +25,7 @@ export function render() {
       game.sessionId = newSession.sessionId;
       game.lastAiMessage = newSession.lastAiMessage;
       game.personalityType = newSession.personalityType;
+      await initGame();
       navigate("/game");
     });
 

@@ -1,7 +1,7 @@
 export const BASE_URL = "http://localhost:8080/api/game";
 export const INFO = "http://localhost:8080/api/ai/info";
 export const RESOURCE_URL = "../js/resources/";
-export const GLADOS_TTS_API = "http://10.244.137.104:8124/synthesize/";
+export const GLADOS_TTS_API = "http://192.168.68.140:8124/synthesize/";
 
 export const GAME_START = `${BASE_URL}/start`;
 export const GAME_STATE = (id) => `${BASE_URL}/${id}/state`;

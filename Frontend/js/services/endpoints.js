@@ -11,12 +11,8 @@ import {
 } from "../config.js";
 
 // START GAME   / personalityType  and "DEFAULT" on all caps
-export async function gameStart(personality) {
-  const resp = await fetch(GAME_START, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(personality),
-  });
+export async function gameStart() {
+  const resp = await fetch(GAME_START, { method: "POST" });
   return resp.json();
 }
 
@@ -39,6 +35,12 @@ export async function sendAnswer(sessionId, answer) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ answerType: answer }),
   });
+
+  if (!resp.ok) {
+    const text = await resp.text();
+    throw new Error(`sendAnswer ${resp.status}: ${text}`);
+  }
+
   return resp.json();
 }
 
