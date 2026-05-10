@@ -33,7 +33,113 @@ public class AiServiceImpl implements AiService {
      * @return the next AI decision for the session
      * @throws AiIntegrationException if the OpenAI call fails
      */
+
     @Override
+    public AiDecision getNextStep(GameSession gameSession) {
+        if (gameSession.getGameStatus() == GameStatus.PLAYER_WON) {
+            return new AiDecision(AiDecisionType.FINAL_MESSAGE, "You win. I was clearly sabotaged.");
+        }
+
+        if (gameSession.getGameStatus() == GameStatus.AI_WON) {
+            return new AiDecision(AiDecisionType.FINAL_MESSAGE, "I knew it all along. Too easy.");
+        }
+
+        boolean guessPhase = gameSession.getQuestionCountInRound() >= gameConfig.getMaxQuestionsPerRound();
+
+        String prompt = buildPrompt(gameSession);
+        String content = callModel(prompt);
+
+        if (guessPhase) {
+            content = ensureGuessFormat(content, gameSession);
+            return new AiDecision(AiDecisionType.GUESS, content);
+        }
+
+        content = ensureQuestionFormat(content, gameSession);
+        return new AiDecision(AiDecisionType.QUESTION, content);
+    }
+
+    private String callModel(String prompt) {
+        try {
+            return chatClient.prompt()
+                    .user(prompt)
+                    .call()
+                    .content();
+        } catch (Exception e) {
+            throw new AiIntegrationException("Failed to get a response from OpenAI.", e);
+        }
+    }
+
+    private String ensureQuestionFormat(String content, GameSession gameSession) {
+        if (isValidQuestion(content)) {
+            return content;
+        }
+
+        String repairPrompt = """
+            Rewrite the following response as exactly one yes/no question.
+            Keep the same personality and intent.
+            Do not include any explanation before or after the question.
+
+            Original response:
+            %s
+            """.formatted(content);
+
+        String repairedContent = callModel(repairPrompt);
+
+        if (isValidQuestion(repairedContent)) {
+            return repairedContent;
+        }
+
+        return "Is your character human?";
+    }
+
+    private boolean isValidQuestion(String content) {
+        if (content == null) {
+            return false;
+        }
+
+        String trimmed = content.trim();
+
+        return !trimmed.isEmpty()
+                && trimmed.contains("?")
+                && !trimmed.startsWith("My guess is:");
+    }
+
+
+    private String ensureGuessFormat(String content, GameSession gameSession) {
+        if (isValidGuess(content)) {
+            return content;
+        }
+
+        String repairPrompt = """
+            Rewrite the following response as a final guess.
+            The response must begin with exactly: My guess is:
+            After that, provide the character name and one short in-character remark.
+            Do not ask a question.
+            Do not add anything before 'My guess is:'.
+
+            Original response:
+            %s
+            """.formatted(content);
+
+        String repairedContent = callModel(repairPrompt);
+
+        if (isValidGuess(repairedContent)) {
+            return repairedContent;
+        }
+
+        return "My guess is: Sherlock Holmes. Insufferably observant, just like this exercise.";
+    }
+
+    private boolean isValidGuess(String content) {
+        if (content == null) {
+            return false;
+        }
+
+        return content.trim().startsWith("My guess is:");
+    }
+
+
+    /*
     public AiDecision getNextStep(GameSession gameSession) {
         if (gameSession.getGameStatus() == GameStatus.PLAYER_WON) {
             return new AiDecision(AiDecisionType.FINAL_MESSAGE, "You win. I was clearly sabotaged.");
@@ -63,6 +169,8 @@ public class AiServiceImpl implements AiService {
 
         return new AiDecision(AiDecisionType.GUESS, content);
     }
+    */
+
 
     private String buildPrompt(GameSession gameSession) {
         PromptTemplate promptTemplate = new PromptTemplate(gamePromptTemplate);

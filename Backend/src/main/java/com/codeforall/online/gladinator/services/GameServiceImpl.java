@@ -125,7 +125,7 @@ public class GameServiceImpl implements GameService {
           session.setQuestionCountInRound(0);
           session.setFinalGuess(null);
           session.setLastQuestion(null);
-          session.setAnswersHistory(new ArrayList<>());
+          //session.setAnswersHistory(new ArrayList<>());
         }
       }
     }
