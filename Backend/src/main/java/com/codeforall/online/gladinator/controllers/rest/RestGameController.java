@@ -22,7 +22,7 @@ public class RestGameController {
   private GameService gameService;
 
   /**
-   * Starts a new game session.
+   * Starts a new game session with the default AI personality.
    *
    * @return the DTO containing the initial session state
    */
@@ -43,13 +43,12 @@ public class RestGameController {
   }
 
   /**
-   * Chooses or updates the AI personality for an existing session.
+   * Changes the current AI personality for an existing session.
    *
    * @param sessionId  the session identifier
    * @param requestDto the request DTO containing the selected personality
    * @return the DTO representing the updated session state
    */
-  // Alterei aqui para Patch por ser uma alteração a uma sessão já criada
   @PatchMapping("/{sessionId}/personality")
   public GameStateDto choosePersonality(@PathVariable String sessionId,
       @Valid @RequestBody ChoosePersonalityRequestDto requestDto) {

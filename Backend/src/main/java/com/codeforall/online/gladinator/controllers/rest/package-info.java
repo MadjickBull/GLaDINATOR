@@ -18,13 +18,13 @@
  * Main endpoints:
  *
  * POST /api/game/start
- * - creates a new game session.
+ * - creates a new game session with the default AI personality.
  *
  * GET /api/game/{sessionId}/state
  * - returns the current session state.
  *
  * PATCH /api/game/{sessionId}/personality
- * - defines or updates the AI personality for the session.
+ * - updates the AI personality during the session.
  *
  * POST /api/game/{sessionId}/answer
  * - processes the user's answer.
@@ -59,13 +59,13 @@
  * Endpoints principais:
  *
  * POST /api/game/start
- * - cria uma nova sessão de jogo.
+ * - cria uma nova sessão de jogo com a personalidade default da IA.
  *
  * GET /api/game/{sessionId}/state
  * - devolve o estado atual da sessão.
  *
  * PATCH /api/game/{sessionId}/personality
- * - define ou atualiza a personalidade da IA na sessão.
+ * - atualiza a personalidade da IA durante a sessão.
  *
  * POST /api/game/{sessionId}/answer
  * - processa a resposta do utilizador.

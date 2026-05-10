@@ -177,7 +177,7 @@ public class GameServiceImpl implements GameService {
    * Restarts an existing game session.
    *
    * @param sessionId the session identifier
-   * @return the DTO containing the reset session state
+   * @return the DTO containing the reset session state with the default personality
    */
   @Override
   public GameStartRestartResponseDto restartGame(String sessionId) {

@@ -21,7 +21,8 @@
  *
  * GameService
  * - starts and restarts the game;
- * - chooses the AI personality;
+ * - starts new sessions with the default AI personality;
+ * - changes the AI personality during the session when requested;
  * - processes the user's answers;
  * - controls lives and round progression;
  * - ends the game;
@@ -72,7 +73,8 @@
  *
  * GameService
  * - inicia e reinicia o jogo;
- * - permite escolher a personalidade da IA;
+ * - inicia novas sessões com a personalidade default da IA;
+ * - permite alterar a personalidade da IA durante a sessão;
  * - processa as respostas do utilizador;
  * - controla vidas e progressão da ronda;
  * - termina o jogo;
