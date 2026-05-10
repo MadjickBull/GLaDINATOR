@@ -7,7 +7,7 @@ export default function start() {
   addEventListener("popstate", handlePopState);
 }
 
-function navigate(path, firstLoad) {
+export function navigate(path, firstLoad) {
   if (path === routes.currentPath.path) {
     return;
   }

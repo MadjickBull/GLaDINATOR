@@ -30,7 +30,7 @@ public class RestGameController {
   }
 
   // Define ou altera a personalidade da IA
-  @PostMapping("/{sessionId}/personality")
+  @PatchMapping("/{sessionId}/personality")
   public GameStateDto updatePersonality(@PathVariable String sessionId,
       @RequestBody UpdatePersonalityRequestDto requestDto) {
     return gameService.updatePersonality(sessionId, requestDto);
