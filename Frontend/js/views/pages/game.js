@@ -50,6 +50,8 @@ export async function render() {
 
   async function handleAnswer(answer) {
     const sendRes = await sendAnswer(game.sessionId, answer);
+    game.gameStatus = sendRes.gameStatus;
+    game.lastAiMessage = sendRes.lastAiMessage ?? game.lastAiMessage;
 
     if (
       sendRes.gameStatus === "AI_WON" ||
@@ -62,6 +64,7 @@ export async function render() {
     const res = await getNextStep(game.sessionId);
 
     aiMessage.textContent = res.content;
+    game.lastAiMessage = res.content;
     speak(res.content);
   }
 
