@@ -536,3 +536,60 @@ footer h5 {
   bottom: auto;
   transform: none;
 }
+
+#game-text-box {
+  position: fixed;
+  top: 50%;
+  left: 15%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+
+  max-width: 420px;
+  width: 30vw;
+
+  background: rgba(10, 10, 10, 0.78);
+  border: 1px solid #ff6600;
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+#game-text {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 12px;
+  color: #aaa;
+  line-height: 1.8;
+  letter-spacing: 0.5px;
+  text-align: center;
+  margin: 0;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+#counter-container {
+  position: fixed;
+  top: 25%;
+  right: 5rem;
+  transform: translateY(-50%);
+
+  max-width: 220px;
+  width: auto;
+
+  background: rgba(10, 10, 10, 0.78);
+  border: 1px solid #ff6600;
+  border-radius: 6px;
+
+  padding: 0.75rem 1rem;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+#counterDescription,
+#guess-counter {
+  color: grey;
+}

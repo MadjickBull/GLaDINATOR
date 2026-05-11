@@ -24,7 +24,7 @@ export function render() {
   endGameWallpaper.src = RESOURCE_URL + "EndingScreen.mp4";
   endGameWallpaper.loop = true;
   endGameWallpaper.autoplay = true;
-  endGameWallpaper.muted = true;
+  endGameWallpaper.muted = false;
 
   const outcome = outcomeCopy[game?.gameStatus] ?? {
     title: "TEST COMPLETE",

@@ -2,7 +2,7 @@ import { yesButton } from "../components/yesButton.js";
 import { noButton } from "../components/noButton.js";
 import { speak, sendAnswer, getNextStep } from "../../services/endpoints.js";
 import { game } from "../../services/gameSession.js";
-import { RESOURCE_URL } from "../../config.js";
+import { GAME_STATE, RESOURCE_URL } from "../../config.js";
 import { navigate } from "../../router.js";
 
 const wallpaperMap = {
@@ -16,6 +16,15 @@ export async function render() {
   app.innerHTML = "";
 
   speak(game.lastAiMessage);
+
+  const rulesBox = document.createElement("div");
+  const rulesText = document.createElement("p");
+
+  rulesBox.id = "game-text-box";
+  rulesText.id = "game-text";
+  rulesText.textContent =
+    "Think of something, test subject. I will ask the questions. You will answer them. Eventually, I will guess correctly and you will die. And if I do not guess correctly, you will still die. Just knowing you briefly inconvenienced a superintelligent AI. Congratulations.";
+  rulesBox.appendChild(rulesText);
 
   const gameWallpaper = document.createElement("video");
   gameWallpaper.loop = true;
@@ -62,9 +71,10 @@ export async function render() {
     }
 
     const res = await getNextStep(game.sessionId);
+    game.remainingLives = res.remainingLives;
+    game.lastAiMessage = res.content;
 
     aiMessage.textContent = res.content;
-    game.lastAiMessage = res.content;
     speak(res.content);
   }
 
@@ -74,6 +84,8 @@ export async function render() {
   app.appendChild(buttonY);
   app.appendChild(buttonN);
   app.appendChild(aiMessageBox);
+  app.appendChild(rulesBox);
+  app.appendChild(counterContainer);
 
   return app;
 }
