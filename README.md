@@ -14,4 +14,4 @@ It will try to guess what you are thinking. Sometimes it will succeed. Sometimes
 
 Enjoy your interaction. Or don’t. The system will continue regardless.
 
-// To install glados-TTS, head over [Here](https://https://github.com/R2D2FISH/glados-tts) for the full installation and edit.
+// To install glados-TTS, head over [Here](https://github.com/R2D2FISH/glados-tts) for the full installation and edit.
