@@ -13,7 +13,7 @@
  *
  * GameStartRestartResponseDto
  * - used in the responses of the start and restart endpoints;
- * - contains the initial or reset state of the session.
+ * - contains the initial or reset state of the session, including the current personality;
  *
  * GameStateDto
  * - represents the complete current state of the session;
@@ -62,7 +62,7 @@
  *
  * GameStartRestartResponseDto
  * - usado nas respostas dos endpoints de start e restart;
- * - contém o estado inicial ou reiniciado da sessão.
+ * - contém o estado inicial ou reiniciado da sessão, incluindo a personalidade atual.
  *
  * GameStateDto
  * - representa o estado atual completo da sessão;

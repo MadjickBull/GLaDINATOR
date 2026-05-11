@@ -125,7 +125,7 @@ public class GameServiceImpl implements GameService {
           session.setQuestionCountInRound(0);
           session.setFinalGuess(null);
           session.setLastQuestion(null);
-          session.setAnswersHistory(new ArrayList<>());
+          //session.setAnswersHistory(new ArrayList<>());
         }
       }
     }
@@ -177,7 +177,7 @@ public class GameServiceImpl implements GameService {
    * Restarts an existing game session.
    *
    * @param sessionId the session identifier
-   * @return the DTO containing the reset session state
+   * @return the DTO containing the reset session state with the default personality
    */
   @Override
   public GameStartRestartResponseDto restartGame(String sessionId) {
