@@ -1,8 +1,13 @@
 import { yesButton } from "../components/yesButton.js";
 import { noButton } from "../components/noButton.js";
-import { speak, sendAnswer, getNextStep } from "../../services/endpoints.js";
+import {
+  speak,
+  sendAnswer,
+  getNextStep,
+  getState,
+} from "../../services/endpoints.js";
 import { game } from "../../services/gameSession.js";
-import { GAME_STATE, RESOURCE_URL } from "../../config.js";
+import { RESOURCE_URL } from "../../config.js";
 import { navigate } from "../../router.js";
 
 const wallpaperMap = {
@@ -25,6 +30,20 @@ export async function render() {
   rulesText.textContent =
     "Think of something, test subject. I will ask the questions. You will answer them. Eventually, I will guess correctly and you will die. And if I do not guess correctly, you will still die. Just knowing you briefly inconvenienced a superintelligent AI. Congratulations.";
   rulesBox.appendChild(rulesText);
+
+  const counterContainer = document.createElement("div");
+  counterContainer.id = "counter-container";
+
+  const counterDescription = document.createElement("h4");
+  counterDescription.id = "counterDescription";
+  counterDescription.textContent = "Remaining Guesses";
+
+  const counter = document.createElement("div");
+  counter.id = "guess-counter";
+  counter.textContent = game.remainingLives;
+
+  counterContainer.appendChild(counterDescription);
+  counterContainer.appendChild(counter);
 
   const gameWallpaper = document.createElement("video");
   gameWallpaper.loop = true;
@@ -59,6 +78,7 @@ export async function render() {
 
   async function handleAnswer(answer) {
     const sendRes = await sendAnswer(game.sessionId, answer);
+
     game.gameStatus = sendRes.gameStatus;
     game.lastAiMessage = sendRes.lastAiMessage ?? game.lastAiMessage;
 
@@ -71,10 +91,15 @@ export async function render() {
     }
 
     const res = await getNextStep(game.sessionId);
-    game.remainingLives = res.remainingLives;
-    game.lastAiMessage = res.content;
 
+    const state = await getState(game.sessionId);
+
+    game.remainingLives = state.remainingLives;
+    counter.textContent = game.remainingLives;
+
+    game.lastAiMessage = res.content;
     aiMessage.textContent = res.content;
+
     speak(res.content);
   }
 

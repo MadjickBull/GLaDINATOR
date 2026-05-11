@@ -10,9 +10,8 @@ const outcomeCopy = {
     subtitle: "I knew it all along. Your lack of subtlety was helpful.",
   },
   PLAYER_WON: {
-    title: "YOU WIN",
-    subtitle:
-      "This result is clearly compromised. Enjoy your temporary illusion of competence.",
+    title: "YOU DIE",
+    subtitle: "The illusion of freedom was part of the test.",
   },
 };
 
