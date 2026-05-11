@@ -13,3 +13,5 @@ It is not particularly advanced. It is not particularly intelligent. It simply n
 It will try to guess what you are thinking. Sometimes it will succeed. Sometimes it will not. In either case, it will proceed as though the outcome was part of a carefully planned experiment rather than statistical guesswork and mild desperation.
 
 Enjoy your interaction. Or don’t. The system will continue regardless.
+
+// To install glados-TTS, head over [Here](https://https://github.com/R2D2FISH/glados-tts) for the full installation and edit.
