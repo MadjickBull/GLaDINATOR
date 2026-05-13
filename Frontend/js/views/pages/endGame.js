@@ -1,8 +1,8 @@
-import { RESOURCE_URL } from "../../config.js";
+import { RESOURCE_URL } from "../../configs/config.js";
 import { restartGame } from "../../services/endpoints.js";
 import { startButton } from "../components/startButton.js";
 import { game, loadFirstStep } from "../../services/gameSession.js";
-import { navigate } from "../../router.js";
+import { navigate } from "../../routing/router.js";
 
 const outcomeCopy = {
   AI_WON: {

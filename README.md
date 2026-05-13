@@ -1,17 +1,72 @@
-GLaDOS Akinator AI Guesser
+GLaDINATOR is a full-stack web application inspired by the classic Akinator-style guessing game, reimagined through the personality of GLaDOS from *Portal*.
 
-This is a small Java + JavaScript + REST API project where an AI attempts to guess what you are thinking. Because apparently, giving humans more ways to feel understood wasn’t challenging enough.
+The player thinks of a character, and the system attempts to identify it through a sequence of AI-generated YES/NO questions, culminating in a final guess.
 
-It works by asking a series of simple yes/no questions and narrowing down possibilities until it arrives at a “guess.” Whether that guess is correct or not is largely irrelevant, though it will act like it was inevitable either way.
+The experience combines AI-driven dialogue, session-based game logic, a custom text-to-speech engine, and an immersive Aperture Science-inspired UI.
 
-The backend is written in Java, because someone had to suffer through structure and type safety. The frontend is JavaScript, because consistency was never really the goal. Communication happens through a REST API, which exists mainly to make everything feel more important than it actually is.
+---
 
-The system is wrapped in a GLaDOS-inspired personality layer, which means responses may occasionally sound sarcastic, disappointed, or vaguely concerned about your decision-making abilities. This is intentional. Unlike your answers.
+## Features
 
-It is not particularly advanced. It is not particularly intelligent. It simply narrows things down and commits to confidence, which, incidentally, is more than can be said for most users.
+- AI-powered character guessing gameplay  
+- GLaDOS-style personality and dialogue system  
+- Dynamic question generation with controlled game flow  
+- Final AI guess with win/loss outcome  
+- Session-based state management  
+- Local text-to-speech integration (GLaDOS voice engine)  
+- Single Page Application frontend  
+- REST API backend architecture  
+- Backend unit and integration tests  
 
-It will try to guess what you are thinking. Sometimes it will succeed. Sometimes it will not. In either case, it will proceed as though the outcome was part of a carefully planned experiment rather than statistical guesswork and mild desperation.
+---
 
-Enjoy your interaction. Or don’t. The system will continue regardless.
+## Tech Stack
 
-// To install glados-TTS, head over [Here](https://github.com/R2D2FISH/glados-tts) for the full installation and edit.
+**Backend**
+- Java
+- Spring MVC
+- Maven
+- Tomcat 10
+- OpenAI API
+
+**Frontend**
+- HTML
+- CSS
+- JavaScript (SPA architecture)
+
+**Voice / TTS**
+- Python
+- Flask
+- Flask-CORS
+- Custom GLaDOS TTS engine
+
+---
+
+## How It Works
+
+1. A game session is created when the user starts a new game  
+2. The backend initializes session state in memory  
+3. OpenAI generates the next question or final guess  
+4. The frontend renders the response in the UI  
+5. The response can optionally be sent to the local TTS engine  
+6. The user answers YES or NO  
+7. The backend updates the game state accordingly  
+8. The game ends when the AI correctly guesses the character or fails
+
+Use the provided `config.properties.example` as a reference and configure the following values:
+
+- OpenAI API key  
+- OpenAI model selection  
+
+This file is required for the backend to communicate with the OpenAI API.
+
+---
+
+### Deploying to Tomcat
+
+To deploy the application using Maven and Tomcat, run:
+
+```bash
+mvn tomcat7:undeploy clean tomcat7:deploy
+
+To install glados-TTS, head over [Here](https://github.com/R2D2FISH/glados-tts) for the full installation and edit.
