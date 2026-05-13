@@ -64,9 +64,10 @@ This file is required for the backend to communicate with the OpenAI API.
 
 ### Deploying to Tomcat
 
+To install glados-TTS, head over [Here](https://github.com/R2D2FISH/glados-tts) for the full installation and edit.
+
 To deploy the application using Maven and Tomcat, run:
 
 ```bash
 mvn tomcat7:undeploy clean tomcat7:deploy
 
-To install glados-TTS, head over [Here](https://github.com/R2D2FISH/glados-tts) for the full installation and edit.
