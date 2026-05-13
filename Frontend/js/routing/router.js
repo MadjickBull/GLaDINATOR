@@ -1,4 +1,4 @@
-import routes from "../js/routes.js";
+import routes from "../routing/routes.js";
 
 export default function start() {
   const path = window.location.pathname;
@@ -38,7 +38,7 @@ function updateActiveNavLink(path) {
 }
 
 async function initializeController(controller) {
-  const controllerModule = await import(`./controllers/${controller}.js`);
+  const controllerModule = await import(`../controllers/${controller}.js`);
 
   controllerModule.init();
 }

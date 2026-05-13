@@ -1,4 +1,4 @@
-import { RESOURCE_URL } from "../../config.js";
+import { RESOURCE_URL } from "../../configs/config.js";
 
 export function render(devs) {
   const app = document.querySelector("#app");

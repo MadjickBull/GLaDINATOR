@@ -1,6 +1,6 @@
-import { RESOURCE_URL } from "../../config.js";
+import { RESOURCE_URL } from "../../configs/config.js";
 import { startButton } from "../components/startButton.js";
-import { navigate } from "../../router.js";
+import { navigate } from "../../routing/router.js";
 
 export function render() {
   const app = document.querySelector("#app");

@@ -8,7 +8,7 @@ import {
   INFO,
   GLADOS_TTS_API,
   GAME_END,
-} from "../config.js";
+} from "../configs/config.js";
 
 // START GAME   / personalityType  and "DEFAULT" on all caps
 export async function gameStart() {

@@ -7,8 +7,8 @@ import {
   getState,
 } from "../../services/endpoints.js";
 import { game } from "../../services/gameSession.js";
-import { RESOURCE_URL } from "../../config.js";
-import { navigate } from "../../router.js";
+import { RESOURCE_URL } from "../../configs/config.js";
+import { navigate } from "../../routing/router.js";
 
 const wallpaperMap = {
   LOVER: "FlirtatousGladinator.mp4",

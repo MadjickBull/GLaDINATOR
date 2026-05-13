@@ -1,4 +1,4 @@
-import start from "../js/router.js";
+import start from "../js/routing/router.js";
 import { initGame } from "./services/gameSession.js";
 import { toggleButton } from "./views/components/toggle.js";
 
