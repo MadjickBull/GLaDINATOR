@@ -28,6 +28,13 @@ export function navigate(path, firstLoad) {
 function setCurrentRoute(route) {
   routes.currentPath.path = route.path;
   routes.currentPath.controller = route.controller;
+  updateActiveNavLink(route.path);
+}
+
+function updateActiveNavLink(path) {
+  document.querySelectorAll("nav a.nav-link").forEach((anchor) => {
+    anchor.classList.toggle("active", anchor.pathname === path);
+  });
 }
 
 async function initializeController(controller) {

@@ -1,4 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700&display=swap");
+
+/* ---- Personality accent color variables ---- */
+:root {
+  --accent: #ff6600;
+  --accent-bg: rgba(255, 102, 0, 0.1);
+}
+html[data-personality="LOVER"] {
+  --accent: #ff69b4;
+  --accent-bg: rgba(255, 105, 180, 0.1);
+}
+html[data-personality="SARCASTIC"] {
+  --accent: #cc0000;
+  --accent-bg: rgba(204, 0, 0, 0.1);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -22,6 +37,17 @@ html {
   z-index: 0;
 }
 
+/* all videos inside #app fill the container */
+#app video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
 footer {
   position: fixed;
   bottom: 0;
@@ -37,7 +63,7 @@ header {
   width: 100%;
   z-index: 2;
   background: rgba(10, 10, 10, 0.92);
-  border-bottom: 1px solid #ff6600;
+  border-bottom: 1px solid var(--accent);
   padding: 0 2rem;
   height: 64px;
   display: flex;
@@ -56,14 +82,14 @@ header {
 
 #title-component {
   font-size: 10px;
-  color: #ff6600;
+  color: var(--accent);
   letter-spacing: 2px;
   font-weight: 400;
 }
 
 footer {
   background: rgba(10, 10, 10, 0.92);
-  border-top: 1px solid #ff6600;
+  border-top: 1px solid var(--accent);
   padding: 0.75rem 2rem;
   display: flex;
   align-items: center;
@@ -110,17 +136,17 @@ footer h5 {
   padding-bottom: 2px;
 }
 .nav-link:hover {
-  color: #ff6600;
-  border-bottom-color: #ff6600;
+  color: var(--accent);
+  border-bottom-color: var(--accent);
 }
 .nav-link.active {
   color: #ffffff;
-  border-bottom-color: #ff6600;
+  border-bottom-color: var(--accent);
 }
 
 #status {
   font-size: 10px;
-  color: #ff6600;
+  color: var(--accent);
   letter-spacing: 1px;
   display: flex;
   align-items: center;
@@ -129,7 +155,7 @@ footer h5 {
 #status-dot {
   width: 6px;
   height: 6px;
-  background: #ff6600;
+  background: var(--accent);
   border-radius: 50%;
   animation: blink 2s infinite;
 }
@@ -155,7 +181,7 @@ footer h5 {
   text-decoration: none;
 }
 .footer-link:hover {
-  color: #ff6600;
+  color: var(--accent);
 }
 .footer-divider {
   width: 1px;
@@ -163,7 +189,7 @@ footer h5 {
   background: #333;
 }
 #aperture-word {
-  color: #ff6600;
+  color: var(--accent);
 }
 #trademark,
 #build-info {
@@ -174,7 +200,6 @@ footer h5 {
 
 /* --- Toggle Switch Styles --- */
 
-/* Container for toggle */
 .toggle {
   position: relative;
   display: inline-block;
@@ -183,12 +208,10 @@ footer h5 {
   cursor: pointer;
 }
 
-/* Checkbox hidden to save state */
 .toggle input {
   display: none;
 }
 
-/* Container where circle slides */
 .slider {
   position: absolute;
   top: 0;
@@ -202,7 +225,6 @@ footer h5 {
   align-items: center;
 }
 
-/* The circle */
 .slider::before {
   content: "";
   position: absolute;
@@ -215,16 +237,13 @@ footer h5 {
   transition: transform 0.3s;
 }
 
-/* ON color*/
 .toggle input:checked + .slider {
-  background-color: #ff6600;
+  background-color: var(--accent);
 }
-/* ON slider*/
 .toggle input:checked + .slider::before {
   transform: translateX(25px);
 }
 
-/* --- About Page --- */
 /* --- About Page --- */
 .about-content {
   position: relative;
@@ -249,8 +268,8 @@ footer h5 {
 }
 
 .dev-card {
-  background: rgba(255, 102, 0, 0.1);
-  border: 1px solid #ff6600;
+  background: var(--accent-bg);
+  border: 1px solid var(--accent);
   border-radius: 8px;
   padding: 0.65rem 0.85rem;
   display: flex;
@@ -267,30 +286,30 @@ footer h5 {
   justify-content: center;
   font-family: "Share Tech Mono", monospace;
   font-size: 18px;
-  color: #ff6600;
+  color: var(--accent);
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  border: 2px solid #ff6600;
+  border: 2px solid var(--accent);
 }
 
 .dev-card h3 {
   font-family: "Orbitron", monospace;
   font-size: 13px;
-  color: black;
+  color: #ffffff;
 }
 
 .dev-card p {
   font-size: 11px;
-  color: #ff6600;
+  color: var(--accent);
   margin-top: -2px;
 }
 
 .dev-github {
   font-size: 10px;
-  color: #ff6600;
+  color: var(--accent);
   text-decoration: none;
-  border: 1px solid #ff6600;
+  border: 1px solid var(--accent);
   padding: 3px 7px;
   border-radius: 4px;
   transition:
@@ -305,9 +324,10 @@ footer h5 {
 }
 
 .dev-github:hover {
-  background-color: #ff6600;
+  background-color: var(--accent);
   color: #0a0a0a;
 }
+
 /*HOME TEXT BOX*/
 #home-text-box {
   position: fixed;
@@ -318,7 +338,7 @@ footer h5 {
   max-width: 680px;
   width: calc(100% - 4rem);
   background: rgba(10, 10, 10, 0.78);
-  border: 1px solid #ff6600;
+  border: 1px solid var(--accent);
   border-radius: 6px;
   padding: 1.25rem 1.5rem;
   box-sizing: border-box;
@@ -337,6 +357,7 @@ footer h5 {
   overflow-wrap: break-word;
   white-space: normal;
 }
+
 /* --- Start Button --- */
 #start-button {
   position: fixed;
@@ -345,13 +366,13 @@ footer h5 {
   transform: translateX(-50%);
   z-index: 1;
   background: rgba(10, 10, 10, 0.78);
-  border: 1px solid #ff6600;
+  border: 1px solid var(--accent);
   border-radius: 6px;
   padding: 0.75rem 3rem;
   font-family: "Orbitron", monospace;
   font-size: 12px;
   font-weight: 700;
-  color: #ff6600;
+  color: var(--accent);
   letter-spacing: 3px;
   text-transform: uppercase;
   text-decoration: none;
@@ -362,7 +383,7 @@ footer h5 {
     color 0.3s;
 }
 #start-button:hover {
-  background: #ff6600;
+  background: var(--accent);
   color: #0a0a0a;
 }
 
@@ -380,7 +401,7 @@ footer h5 {
   max-width: 680px;
   width: calc(100% - 4rem);
   background: rgba(10, 10, 10, 0.78);
-  border: 1px solid #ff6600;
+  border: 1px solid var(--accent);
   border-radius: 6px;
   padding: 1.25rem 1.5rem;
   box-sizing: border-box;
@@ -395,7 +416,7 @@ footer h5 {
   max-width: 340px;
   width: calc(50% - 4rem);
   background: rgba(10, 10, 10, 0.78);
-  border: 1px solid #ff6600;
+  border: 1px solid var(--accent);
   border-radius: 6px;
   padding: 1.25rem 1.5rem;
   box-sizing: border-box;
@@ -420,13 +441,13 @@ footer h5 {
   position: fixed;
   z-index: 1;
   background: rgba(10, 10, 10, 0.78);
-  border: 1px solid #ff6600;
+  border: 1px solid var(--accent);
   border-radius: 6px;
   padding: 0.75rem 3rem;
   font-family: "Orbitron", monospace;
   font-size: 12px;
   font-weight: 700;
-  color: #ff6600;
+  color: var(--accent);
   letter-spacing: 3px;
   text-transform: uppercase;
   text-decoration: none;
@@ -439,7 +460,7 @@ footer h5 {
 
 #yes-button:hover,
 #no-button:hover {
-  background: #ff6600;
+  background: var(--accent);
   color: #0a0a0a;
 }
 
@@ -452,6 +473,7 @@ footer h5 {
   top: 60%;
   right: 7rem;
 }
+
 .personality-switcher {
   display: flex;
   border-radius: 20px;
@@ -468,6 +490,7 @@ footer h5 {
   transition: background 0.2s;
 }
 
+/* Each button keeps its own fixed highlight color */
 .personality-switcher button[data-value="LOVER"]:hover,
 .personality-switcher button[data-value="LOVER"].active {
   background: #ff69b4;
@@ -500,7 +523,7 @@ footer h5 {
   gap: 1rem;
   padding: 1.5rem 1.5rem 1.25rem;
   background: rgba(10, 10, 10, 0.78);
-  border: 1px solid #ff6600;
+  border: 1px solid var(--accent);
   border-radius: 8px;
   text-align: center;
 }
@@ -509,7 +532,7 @@ footer h5 {
   font-family: "Orbitron", monospace;
   font-size: 28px;
   font-weight: 700;
-  color: #ff6600;
+  color: var(--accent);
   letter-spacing: 5px;
   text-transform: uppercase;
 }
@@ -543,12 +566,10 @@ footer h5 {
   left: 15%;
   transform: translate(-50%, -50%);
   z-index: 1;
-
   max-width: 420px;
   width: 30vw;
-
   background: rgba(10, 10, 10, 0.78);
-  border: 1px solid #ff6600;
+  border: 1px solid var(--accent);
   border-radius: 6px;
   padding: 1rem 1.25rem;
   box-sizing: border-box;
@@ -573,23 +594,231 @@ footer h5 {
   top: 25%;
   right: 5rem;
   transform: translateY(-50%);
-
+  z-index: 1;
   max-width: 220px;
   width: auto;
-
   background: rgba(10, 10, 10, 0.78);
-  border: 1px solid #ff6600;
+  border: 1px solid var(--accent);
   border-radius: 6px;
-
   padding: 0.75rem 1rem;
   box-sizing: border-box;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.25rem;
 }
+
 #counterDescription,
 #guess-counter {
   color: grey;
+}
+
+/* ---- Mobile Responsive ---- */
+@media (max-width: 768px) {
+  header {
+    height: auto;
+    min-height: 52px;
+    padding: 0.4rem 0.75rem;
+  }
+
+  #nav-permanent {
+    gap: 0.4rem;
+  }
+
+  #header-left {
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  #title-block {
+    display: none;
+  }
+
+  #header-right {
+    gap: 0.6rem;
+    flex-shrink: 0;
+  }
+
+  #aperture-icon {
+    width: 26px;
+    height: 26px;
+  }
+
+  #page-title {
+    font-size: 13px;
+    letter-spacing: 1px;
+  }
+
+  #title-component {
+    font-size: 7px;
+    letter-spacing: 0.5px;
+  }
+
+  /* hide verbose status text on mobile */
+  #status {
+    display: none;
+  }
+
+  .nav-link {
+    font-size: 10px;
+    letter-spacing: 1px;
+  }
+
+  .personality-switcher {
+    margin-right: 0;
+  }
+
+  .personality-switcher button {
+    padding: 3px 7px;
+    font-size: 12px;
+  }
+
+  /* Footer mobile */
+  footer {
+    padding: 0.4rem 0.75rem;
+    flex-wrap: wrap;
+    gap: 0.2rem;
+    justify-content: center;
+  }
+
+  #footer-nav {
+    gap: 0.6rem;
+    order: 2;
+  }
+
+  #trademark {
+    order: 1;
+    font-size: 8px;
+  }
+
+  #build-info {
+    order: 3;
+    font-size: 8px;
+  }
+
+  .footer-link {
+    font-size: 8px;
+  }
+
+  /* Home page mobile */
+  #home-text-box {
+    bottom: auto;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(100% - 2rem);
+    max-width: none;
+    padding: 1rem;
+  }
+
+  #start-button {
+    bottom: 90px;
+    padding: 0.75rem 2rem;
+    width: calc(100% - 4rem);
+    max-width: 280px;
+  }
+
+  /* About page mobile — 2-column card grid */
+  .about-content {
+    padding: 0 1rem 55px;
+    justify-content: flex-end;
+    gap: 0.75rem;
+  }
+
+  .about-paragraph {
+    font-size: 11px;
+    padding: 0.75rem 1rem;
+    width: 100%;
+    max-width: none;
+    line-height: 1.6;
+  }
+
+  .dev-list {
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 0.5rem;
+  }
+
+  .dev-card {
+    width: calc(50% - 0.3rem);
+    min-width: 120px;
+    padding: 0.5rem 0.6rem;
+  }
+
+  .dev-avatar {
+    width: 42px;
+    height: 42px;
+    font-size: 15px;
+  }
+
+  .dev-card h3 {
+    font-size: 11px;
+  }
+
+  .dev-card p {
+    font-size: 9px;
+  }
+
+  /* Game page mobile — stack elements vertically */
+  #game-text-box {
+    top: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: calc(55px + 50px + 110px + 0.75rem);
+    width: calc(100% - 2rem);
+    max-width: none;
+  }
+
+  #message-box {
+    top: auto;
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: calc(55px + 50px + 0.5rem);
+    width: calc(100% - 2rem);
+    max-width: none;
+    padding: 0.75rem 1rem;
+  }
+
+  #yes-button {
+    top: auto;
+    right: auto;
+    bottom: 55px;
+    left: calc(50% + 0.25rem);
+    transform: none;
+    width: calc(50% - 1.25rem);
+    padding: 0.75rem 0.5rem;
+    font-size: 11px;
+    letter-spacing: 2px;
+  }
+
+  #no-button {
+    top: auto;
+    right: auto;
+    bottom: 55px;
+    left: 1rem;
+    width: calc(50% - 1.25rem);
+    padding: 0.75rem 0.5rem;
+    font-size: 11px;
+    letter-spacing: 2px;
+  }
+
+  #counter-container {
+    top: 64px;
+    right: 1rem;
+    transform: none;
+    padding: 0.5rem 0.75rem;
+  }
+
+  /* Endgame mobile */
+  #endgame-panel {
+    bottom: 55px;
+    width: calc(100% - 2rem);
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+
+  #endgame-title {
+    font-size: 20px;
+    letter-spacing: 3px;
+  }
 }
